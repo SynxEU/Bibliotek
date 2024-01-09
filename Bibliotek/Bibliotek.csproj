@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bibliotek.Services\Bibliotek.Service.csproj" />
+    <ProjectReference Include="..\Bibliotek.Service\Bibliotek.Service.csproj" />
+  </ItemGroup>
+
+</Project>
