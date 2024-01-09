@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bibliotek.Service
+namespace Bibliotek.Service.Interfaces
 {
     public interface IBookService
     {
@@ -16,5 +16,6 @@ namespace Bibliotek.Service
         void ReturnBook(int bookID);
         string EditBookTitle(int id, string newTitle);
         string EditBookAuthor(int id, int newAuthorID);
+        string AddBookGenre(int bookID, int genreID);
     }
 }

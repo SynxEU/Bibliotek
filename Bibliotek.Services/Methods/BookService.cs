@@ -7,8 +7,9 @@ using Bibliotek.Domain.Models;
 using Bibliotek.Domain;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using Bibliotek.Service.Interfaces;
 
-namespace Bibliotek.Service
+namespace Bibliotek.Service.Methods
 {
     public class BookService : IBookService
     {

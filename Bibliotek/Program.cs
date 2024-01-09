@@ -1,10 +1,13 @@
-using Bibliotek.Service;
+using Bibliotek.Service.Interfaces;
+using Bibliotek.Service.Methods;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IBookService, BookService>();
+builder.Services.AddSingleton<ILoanerService, LoanerService>();
+builder.Services.AddSingleton<IAuthorService, AuthorService>();
 
 var app = builder.Build();
 

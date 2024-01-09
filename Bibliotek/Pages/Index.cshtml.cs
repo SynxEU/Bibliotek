@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Bibliotek.Domain.Models;
-using Bibliotek.Service;
+using Bibliotek.Service.Interfaces;
 
 namespace Bibliotek.Pages
 {

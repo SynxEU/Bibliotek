@@ -49,7 +49,7 @@ namespace Bibliotek.Domain
 
                 com1.Parameters.AddWithValue("@Title", title);
                 com1.Parameters.AddWithValue("@Author_ID", authorID);
-                com2.Parameters.AddWithValue("Genre_ID", genreID);
+                com2.Parameters.AddWithValue("@Genre_ID", genreID);
                 com1.ExecuteNonQuery();
                 com2.ExecuteNonQuery();
 
@@ -133,6 +133,40 @@ namespace Bibliotek.Domain
                     newGenre = _reader.GetString("Genre");
             }
             return newGenre;
+        }
+        public Loaner CreateLoaner(string name, string email, int number)
+        {
+            Loaner loaner = new Loaner();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand com = new SqlCommand("CreateLoaner", conn) { CommandType = CommandType.StoredProcedure };
+
+                com.Parameters.AddWithValue("@Name", name);
+                com.Parameters.AddWithValue("@Email", email);
+                com.Parameters.AddWithValue("@Number", number);
+                com.ExecuteNonQuery();
+                loaner.Email = email;
+                loaner.Name = name;
+                loaner.Number = number;
+            }
+            return loaner;
+        }
+        public Author CreateAuthor(string name, DateTime dateOfBirth)
+        {
+            Author author = new Author();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand com = new SqlCommand("CreateAuthor", conn) { CommandType = CommandType.StoredProcedure };
+
+                com.Parameters.AddWithValue("@Name", name);
+                com.Parameters.AddWithValue("@DOB", dateOfBirth);
+                com.ExecuteNonQuery();
+                author.Name = name;
+                author.DOB = dateOfBirth;
+            }
+            return author;
         }
     }
 }
