@@ -1,0 +1,92 @@
+﻿@page
+@model Bibliotek.Pages.SignupModel
+@{
+    ViewData["Title"] = "Sign up";
+}
+
+<div class="container d-flex justify-content-center text-center postition-relative">
+    <div class="col-sm-2 position-absolute top-50 start-50 translate-middle">
+        <div class="col shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+            <h1 class="h3 mb-2 fw-normal">Welcome!</h1>
+            <p>Feel free to sign up</p>
+            <form class="d-grid"
+                method="post" 
+                id="SignInPage"
+            >
+                <div class="form-floating mb-2">
+                    <input type="Text" 
+                        class="form-control" 
+                        id="firstNameInput"
+                        placeholder="First name"
+                        asp-for="FirstName"
+                        required
+                    >
+                    <label for="firstNameInput">First name</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="Text" 
+                        class="form-control" 
+                        id="lastNameInput" 
+                        placeholder="Last name" 
+                        asp-for="LastName"
+                        required
+                    >
+                    <label for="lastNameInput">Last name</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="email" 
+                        class="form-control" 
+                        id="emailAddressInput"  
+                        placeholder="name@example.com" 
+                        asp-for="EmailAddress"
+                        required
+                    >
+                    <label for="emailAddressInput">Email address</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="tel" 
+                        class="form-control" 
+                        id="telInput" 
+                        placeholder="Number" 
+                        asp-for="PhoneNumber"
+                        required
+                    >
+                    <label for="telInput">Phone Number</label>
+                </div>
+                <div class="form-group">
+                    <div class="form-floating mb-2">
+                        <input type="password" 
+                            class="form-control" 
+                            id="passwordInput" 
+                            placeholder="Password" 
+                            asp-for="Password"
+                            required
+                        >
+                        <label for="passwordInput">Password</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-floating mb-4">
+                        <input type="password" 
+                            class="form-control" 
+                            id="confirmPasswordInput" 
+                            placeholder="Confirm password"
+                            asp-for="ConfirmPassword"
+                            required
+                        >
+                        <label for="confirmPasswordInput">Confirm password</label>
+                        <span asp-validation-for="ConfirmPassword"></span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    Sign up
+                </button>
+            </form>
+            <p>Already a loaner? Sign in by clicking <a href="/Signin">here</a></p>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+   <partial name="_ValidationScriptsPartial" />
+}

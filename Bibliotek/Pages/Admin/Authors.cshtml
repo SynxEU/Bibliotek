@@ -1,0 +1,72 @@
+﻿@page
+@using Bibliotek.Domain.Models;
+@model Bibliotek.Pages.Admin.AuthorsModel
+@{
+    ViewData["Title"] = "Authors";
+}
+
+<div class="container d-flex justify-content-end">
+    <form method="post" class="d-flex">
+        <button class="btn btn-outline-primary me-2" type="submit" asp-page-handler="Create"><i class="fa-solid fa-user">  Create</i></button>
+    </form>
+</div>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Date of Birth</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Author author in Model.ListOfAuthors)
+            {
+                <tr>
+                    <th scope="row">@(author.Id)</th>
+                    <td>@(author.Name)</td>
+                    <td>@(author.DOB.ToShortDateString())</td>
+                    <td class="d-flex justify-content-end">
+                        <form method="post">
+                            <button class="btn btn-outline-primary me-2" type="submit" asp-page-handler="Edit" asp-route-authorId="@author.Id"><i class="fa-solid fa-pen"></i></button>
+                        </form>
+                        <button class="btn btn-outline-danger me-2" data-bs-toggle="modal" data-bs-target="#authorDeleteModal-@author.Id"><i class="fa-solid fa-trash-can"></i></button>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@foreach (Author author in Model.ListOfAuthors)
+{
+    <div class="modal fade" id="authorDeleteModal-@author.Id" tabindex="-1" aria-labelledby="authorDeleteModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-danger" id="authorDeleteModal-@author.Id">Delete</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        Name of Author: @author.Name
+                    </div>
+                    <div class="mb-3">
+                        Date of birth: @author.DOB.ToShortDateString()
+                    </div>
+                    <div class="mb-3">
+                        Are you sure you want to delete this author?
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">No</button>
+                    <form method="post">
+                        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" asp-page-handler="Delete" asp-route-authorId="@author.Id">Yes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}

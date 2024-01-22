@@ -8,7 +8,7 @@ namespace Bibliotek.Domain.Models
 {
     public class Genre
     {
-        public string GenreName { get; set; }
+        public string GenreName { get; set; } = string.Empty;
         public int GenreID { get; set; }
     }
 }

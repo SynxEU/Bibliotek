@@ -3,29 +3,64 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Bibliotek</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Bibliotek.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Bibliotek</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <button class="navbar-toggler border" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel" href="/index">Bibliotek</h5>
+                        <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link active text-dark" href="/index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="/books">Books</a>
+                            </li>
+                            @if (Context.Session.GetString("Name") == null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="/Signin">Sign in</a>
+                                </li>
+                            }
+                            else {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-dark" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span>Hello </span>@Context.Session.GetString("Name")
+                                    </a>
+                                    <ul class="dropdown-menu" data-bs-auto-close="false">
+                                        @if (!Context.Session.GetBoolean("Admin"))
+                                        {
+                                            <li><a class="dropdown-item" href="/user/dashboard">Dashboard</a></li>
+                                            <li><a class="dropdown-item" href="/user/settings">Settings</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a class="dropdown-item" href="/Admin/Dashboard">Site Dashboard</a></li>
+                                            <li><a class="dropdown-item" href="/Admin/Users">Site Users</a></li>
+                                            <li><a class="dropdown-item" href="/Admin/Books">Mange Books</a></li>
+                                            <li><a class="dropdown-item" href="/Admin/Genres">Book Genres</a></li>
+                                            <li><a class="dropdown-item" href="/Admin/Authors">Book Authors</a></li>
+                                        }
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/Logout">Logout</a>
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -37,14 +72,15 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container text-center">
             &copy; 2024 - Bibliotek - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

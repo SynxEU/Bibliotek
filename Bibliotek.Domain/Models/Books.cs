@@ -9,8 +9,9 @@ namespace Bibliotek.Domain.Models
     public class Books
     {
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
         public int Author_ID { get; set; }
         public int Loaner_ID { get; set; }
+        public List<Genre> Genres { get; set; }
     }
 }

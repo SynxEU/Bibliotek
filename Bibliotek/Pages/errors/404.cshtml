@@ -1,0 +1,17 @@
+﻿@page
+@model Bibliotek.Pages.errors._404Model
+@{
+    ViewData["Title"] = "404: Not Found";
+}
+
+<div class="postition-relative">
+    <div class="position-absolute top-50 start-50 translate-middle text-center">
+        <h1>404</h1>
+        <h4>Not Found</h4>
+        <p>Sorry but no such page exists, is removed or is temporarily unavailable</p>
+        <form method="post" asp-page="/Index">
+            <button type="submit" class="btn btn-primary">Go to home page</button>
+        </form>
+    </div>
+</div>
+

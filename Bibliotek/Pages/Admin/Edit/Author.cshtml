@@ -1,0 +1,49 @@
+﻿@page
+@model Bibliotek.Pages.Admin.Edit.AuthorModel
+@{
+    ViewData["Title"] = "Author Editior";
+}
+
+<div class="container">
+    <div class="row gutters">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card h-100 shadow p-3 mb-5 bg-body-tertiary rounded">
+                <div class="card-body">
+                    <form method="post">
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mb-2 text-primary">Author Details</h6>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="NameInput">Name</label>
+                                    <input type="Text"
+                                           class="form-control"
+                                           id="NameInput"
+                                           placeholder="Name"
+                                           asp-for="Name">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="DOBInput">Date of birth</label>
+                                    <input type="date"
+                                           class="form-control"
+                                           id="DOBInput"
+                                           placeholder="Date of birth"
+                                           asp-for="DOB">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3" asp-page-handler="Update">
+                            Update
+                        </button>
+                        <button type="submit" class="btn btn-secondary mt-3" asp-page-handler="Cancel">
+                            Cancel
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

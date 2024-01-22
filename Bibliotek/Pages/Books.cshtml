@@ -1,0 +1,62 @@
+﻿@page
+@using Bibliotek.Domain.Models;
+@model Bibliotek.Pages.BooksModel
+@{
+    ViewData["Title"] = "Books";
+}
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Genres</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Books book in Model.ListOfBooks)
+            {
+                <tr>
+                    <th scope="row">@book.Id</th>
+                    <td>@book.Title</td>
+                    <td>Author</td>
+                    <td class="dropdown">
+                        <a class="dropdown-toggle text-dark" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Genres
+                        </a>
+                        <ul class="dropdown-menu" data-bs-auto-close="false">
+                            @foreach (Genre genre in book.Genres)
+                            {
+                                <li><a class="dropdown-item">@genre.GenreName</a></li>
+                            }
+                        </ul>
+                    </td>
+                    @if (HttpContext.Session.GetInt32("ID").HasValue && !HttpContext.Session.GetBoolean("Admin"))
+                    {
+                        <td class="d-flex justify-content-end">
+                            @if (book.Loaner_ID != 0)
+                            {
+                                <button class="btn btn-outline-warning me-2" disabled><i class="fa-solid fa-book-open-reader"></i></button>
+                            }
+                            else
+                            {
+                                <form method="post">
+                                    <button class="btn btn-outline-warning me-2" type="submit" asp-page-handler="Borrow" asp-route-bookId="@book.Id"><i class="fa-solid fa-book-open-reader"></i></button>
+                                </form>
+                            }
+                        </td>
+                    }
+                    else
+                    {
+                        <td class ="d-flex justify-content-end">
+                            <button class="btn btn-outline-warning me-2" disabled><i class="fa-solid fa-book-open-reader"></i></button>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

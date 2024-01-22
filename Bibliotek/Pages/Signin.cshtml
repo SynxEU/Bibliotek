@@ -1,0 +1,39 @@
+﻿@page
+@model Bibliotek.Pages.SigninModel
+@{
+    ViewData["Title"] = "SignIn";
+}
+<div class="container d-flex justify-content-center text-center postition-relative">
+    <div class="col-sm-2 position-absolute top-50 start-50 translate-middle">
+        <div class="col shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+            <h1 class="h3 mb-2 fw-normal">Sign in</h1>
+            <form method="post" 
+                id="SignInPage">
+                <div class="form-floating">
+                    <input type="email" 
+                        class="form-control" 
+                        id="eMailInput"
+                        placeholder="Email address"
+                        asp-for="Mail"
+                        required
+                    >
+                    <label for="eMailInput">Email address</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="password" 
+                        class="form-control" 
+                        id="passwordInput" 
+                        placeholder="password"
+                        asp-for="Password"
+                        required
+                    >
+                    <label for="passwordInput">Password</label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-group">
+                    Sign in
+                </button>
+            </form>
+            <p>Not a loaner yet? Sign up by clicking <a href="/signup">here</a></p>
+        </div>
+    </div>
+</div>

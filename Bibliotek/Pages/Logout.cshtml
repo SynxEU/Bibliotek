@@ -1,0 +1,21 @@
+﻿@page
+@model Bibliotek.Pages.LogoutModel
+@{
+}
+
+<div class="container d-flex justify-content-center text-center postition-relative">
+    <div class="col-sm-2 position-absolute top-50 start-50 translate-middle">
+        <div class="col shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+            <h1 class="h3 mb-2 fw-normal">Logout</h1>
+            <p>Are you sure you wanna logout?</p>
+            <form method="post">
+                <button type="submit" class="btn btn-success" asp-page-handler="Logout">
+                    Yes
+                </button>
+                <button type="submit" class="btn btn-danger" asp-page-handler="DontLogout">
+                    No
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

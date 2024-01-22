@@ -16,3 +16,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+span.field-validation-error {
+    color: red;
+}
+div a {
+    text-decoration: none;
+}

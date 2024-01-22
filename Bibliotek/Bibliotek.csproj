@@ -7,8 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Pages\Extenstions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="jQuery" Version="3.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Bibliotek.Services\Bibliotek.Service.csproj" />
-    <ProjectReference Include="..\Bibliotek.Service\Bibliotek.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\pics\" />
   </ItemGroup>
 
 </Project>

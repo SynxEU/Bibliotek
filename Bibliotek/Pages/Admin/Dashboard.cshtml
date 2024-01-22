@@ -1,0 +1,53 @@
+﻿@page
+@using Bibliotek.Domain.Models;
+@model Bibliotek.Pages.Admin.AdminProfileModel
+@{
+    ViewData["Title"] = "Admin - Dashboard";
+}
+
+<div class="container d-flex justify-content-between">
+	<div class="card h-100 w-25 shadow p-3 mb-5 bg-body-tertiary rounded">
+		<div class="card-body">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<h5 class="mb-2">Shortcuts</h5>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<a href="~/admin/Users">Site users </a>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<a href="~/admin/Books">Mange Books </a>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<a href="~/admin/Genres">Book Genres </a>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<a href="~/admin/Authors">Book Authors</a>
+			</div>
+		</div>
+	</div>
+	<div class="card h-100 w-50 shadow p-3 mb-5 bg-body-tertiary rounded">
+		<div class="card-body">
+			<div class="row gutters">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<h5 class="mb-4">Site information</h5>
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+					<h6 class="mt-3">Users:</h6>
+					@Model.ListOfLoaners.Count()
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+					<h6 class="mt-3">Books:</h6>
+					@Model.ListOfBooks.Count()
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+					<h6 class="mt-3">Authors:</h6>
+					@Model.ListOfAuthors.Count()
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+					<h6 class="mt-3">Genres:</h6>
+					@Model.ListOfGenres.Count()
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

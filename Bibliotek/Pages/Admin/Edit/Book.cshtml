@@ -1,0 +1,63 @@
+﻿@page
+@model Bibliotek.Pages.Admin.Edit.BookModel
+@{
+    ViewData["Title"] = "Book Editior";
+}
+
+<div class="container ">
+    <div class="row gutters">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+            <div class="card h-100 shadow p-3 mb-5 bg-body-tertiary rounded">
+                <div class="card-body">
+                    <form method="post">
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mb-2 text-primary">Book Details</h6>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="editTitleInput">New Title</label>
+                                    <input type="Text"
+                                           class="form-control"
+                                           id="editTitleInput"
+                                           placeholder="New Title"
+                                           asp-for="Title">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="editAuthorInput">New Author ID</label>
+                                    <input type="number"
+                                           class="form-control"
+                                           id="editAuthorInput"
+                                           placeholder="New Author ID"
+                                           asp-for="Author">
+                                </div>
+                            </div>
+                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="GenreInput">Genre ID</label>
+                                    <input type="number"
+                                           class="form-control"
+                                           id="GenreInput"
+                                           placeholder="Genre ID"
+                                           asp-for="Genre">
+                                </div>
+                            </div>
+                            <div class="container col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 d-flex justify-content-center align-items-center mt-3">
+                                <a class="mx-2" href="/Admin/Genres">Genre IDs</a>
+                                <a class="mx-2" href="/Admin/Authors">Author IDs</a>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3" asp-page-handler="Update">
+                            Update
+                        </button>
+                        <button type="submit" class="btn btn-secondary mt-3" asp-page-handler="Cancel">
+                            Cancel
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
