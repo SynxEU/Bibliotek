@@ -22,6 +22,6 @@ namespace Bibliotek.Service.Methods
         public Author EditAuthorName(int id, string name) { return _connection.EditAuthorName(id, name); }
         public Author EditAuthorDOB(int id, DateTime dateOfBirth) { return _connection.EditAuthorDOB(id, dateOfBirth); }
         public void DeleteAuthor(int id) { _connection.DeleteAuthor(id); }
-        public List<Author> Authors(int id) {  return _connection.Authors(id); }
+        public List<Author> Authors(int id) { return _connection.Authors(id); }
     }
 }

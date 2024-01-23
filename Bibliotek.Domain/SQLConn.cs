@@ -46,6 +46,27 @@ namespace Bibliotek.Domain
             }
             return ListOfBook;
         }
+        public List<Author> Authors(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                List<Author> listOfAuthors = new List<Author>();
+                conn.Open();
+                SqlCommand com = new SqlCommand("GetAuthorsById", conn) { CommandType = CommandType.StoredProcedure };
+                com.Parameters.AddWithValue("@Author_ID", id);
+                com.ExecuteNonQuery();
+
+                SqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    listOfAuthors.Add(new Author
+                    {
+                        Name = reader.GetString("Name"),
+                    });
+                }
+                return listOfAuthors;
+            }
+        }
         public Books CreateBook(string title, int authorID, int genreID)
         {
             Books Book = new Books();
@@ -271,27 +292,6 @@ namespace Bibliotek.Domain
                     });
                 }
                 return author;
-            }
-        }
-        public List<Author> Authors(int id)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                List<Author> listOfAuthors = new List<Author>();
-                conn.Open();
-                SqlCommand com = new SqlCommand("GetAuthorsById", conn) { CommandType = CommandType.StoredProcedure };
-                com.Parameters.AddWithValue("@Author_ID", id);
-                com.ExecuteNonQuery();
-
-                SqlDataReader reader = com.ExecuteReader();
-                while (reader.Read())
-                {
-                    listOfAuthors.Add(new Author
-                    {
-                        Name = reader.GetString("Name"),
-                    });
-                }
-                return listOfAuthors;
             }
         }
         public List<Loaner> GetLoaners()
