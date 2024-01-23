@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -46,25 +47,25 @@ namespace Bibliotek.Domain
             }
             return ListOfBook;
         }
-        public List<Author> Authors(int id)
+        public Author Authors(int id)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                List<Author> listOfAuthors = new List<Author>();
                 conn.Open();
                 SqlCommand com = new SqlCommand("GetAuthorsById", conn) { CommandType = CommandType.StoredProcedure };
                 com.Parameters.AddWithValue("@Author_ID", id);
                 com.ExecuteNonQuery();
+                Author author = new Author();
 
                 SqlDataReader reader = com.ExecuteReader();
                 while (reader.Read())
                 {
-                    listOfAuthors.Add(new Author
+                    author = (new Author
                     {
                         Name = reader.GetString("Name"),
                     });
                 }
-                return listOfAuthors;
+                return author;
             }
         }
         public Books CreateBook(string title, int authorID, int genreID)

@@ -12,6 +12,7 @@ namespace Bibliotek.Domain.Models
         public string Title { get; set; } = string.Empty;
         public int Author_ID { get; set; }
         public int Loaner_ID { get; set; }
+        public Author Author { get; set; }
         public List<Genre> Genres { get; set; }
     }
 }

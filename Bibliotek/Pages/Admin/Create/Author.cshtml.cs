@@ -38,7 +38,14 @@ namespace Bibliotek.Pages.Admin.Create
         {
             if (!string.IsNullOrWhiteSpace(Name))
             {
-                _authorService.CreateAuthor(Name, DOB);
+                if (DOB > DateTime.MinValue)
+                {
+                    _authorService.CreateAuthor(Name, DOB);
+                }
+                else
+                {
+                    return Page();
+                }
             }
             return RedirectToPage("/Admin/Authors");
         }

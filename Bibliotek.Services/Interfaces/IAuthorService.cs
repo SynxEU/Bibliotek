@@ -14,6 +14,6 @@ namespace Bibliotek.Service.Interfaces
         Author EditAuthorName(int id, string name);
         Author EditAuthorDOB(int id, DateTime dateOfBirth);
         void DeleteAuthor(int id);
-        List<Author> Authors(int id);
+        Author Authors(int id);
     }
 }

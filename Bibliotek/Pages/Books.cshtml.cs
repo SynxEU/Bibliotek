@@ -8,14 +8,14 @@ namespace Bibliotek.Pages
     public class BooksModel : PageModel
     {
         private readonly IBookService _bookService;
-        public BooksModel(IBookService bookService)
+		private readonly IAuthorService _authorService;
+		public BooksModel(IBookService bookService, IAuthorService authorService)
         {
             _bookService = bookService;
+            _authorService = authorService;
         }
         [BindProperty]
         public List<Books> ListOfBooks { get; set; } = new List<Books>();
-        [BindProperty]
-        public List<Genre> BookGenres { get; set; } = new List<Genre>();
         public void OnGet()
         {
             ListOfBooks = _bookService.GetAllBooks();
@@ -23,6 +23,9 @@ namespace Bibliotek.Pages
             {
                 List<Genre> genresForBook = _bookService.Genres(book.Id);
                 book.Genres = genresForBook;
+
+                Author author = _authorService.Authors(book.Author_ID);
+                book.Author = author;
             }
         }
         public IActionResult OnPost(int bookId)
