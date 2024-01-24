@@ -14,9 +14,9 @@
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<a href="~/index">Front page</a>
 			</div>
-			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+			@*<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<a href="~/Books">Books </a>
-			</div>
+			</div>*@
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<a href="~/User/Settings">Settings</a>
 			</div>
@@ -48,6 +48,56 @@
 					@(Model.UserDetails.Number)
 				</div>
 			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="card h-75 w-100 shadow p-3 mb-5 bg-body-tertiary rounded">
+		<div class="card-body">
+			@if (Model.ListOfBooks.Count != 0)
+			{
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Title</th>
+							<th scope="col">Author</th>
+							<th scope="col">Genres</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (Books book in Model.ListOfBooks)
+						{
+							<tr>
+								<td scope="row">@book.Title</td>
+								<td>@book.Author.Name</td>
+								<td class="dropdown">
+									<a class="dropdown-toggle text-dark" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Genres
+									</a>
+									<ul class="dropdown-menu" data-bs-auto-close="false">
+										@foreach (Genre genre in book.Genres)
+										{
+											<li><a class="dropdown-item">@genre.GenreName</a></li>
+										}
+									</ul>
+								</td>
+								<td class="d-flex justify-content-end">
+									<form method="post">
+										<button class="btn btn-outline-danger me-2" type="submit" asp-page-handler="Return" asp-route-bookId="@book.Id"><i class="fa-solid fa-arrow-right"></i></button>
+									</form>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			}
+			else
+			{
+				<div class="d-flex justify-content-center">
+					<h4>No books borrowed</h4>
+				</div>
+			}
 		</div>
 	</div>
 </div>

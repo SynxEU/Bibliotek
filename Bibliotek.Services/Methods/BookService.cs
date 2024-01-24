@@ -33,5 +33,6 @@ namespace Bibliotek.Service.Methods
         public string AddBookGenre(int bookID, int genreID) { return _connection.AddBookGenre(bookID, genreID); }
         public List<Genre> Genres(int id) { return _connection.Genres(id); }
         public List<Genre> GetGenres() { return _connection.GetGenres(); }
-    }
+		public Books GetLoanedBooks(int id) { return _connection.GetLoanedBooks(id); }
+	}
 }

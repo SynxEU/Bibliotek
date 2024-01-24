@@ -20,6 +20,5 @@ namespace Bibliotek.Service.Interfaces
         bool AddAdmin(int id);
         bool RemoveAdmin(int id);
         void DeleteLoaner(int id);
-
     }
 }

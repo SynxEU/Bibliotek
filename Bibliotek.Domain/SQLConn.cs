@@ -231,6 +231,29 @@ namespace Bibliotek.Domain
                 return loaner;
             }
         }
+        public Books GetLoanedBooks(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand com = new SqlCommand("GetLoanedBooks", conn) { CommandType = CommandType.StoredProcedure };
+                com.Parameters.AddWithValue("@Loaner_ID", id);
+                com.ExecuteNonQuery();
+
+                Books book = new Books();
+                SqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    book = (new Books
+                    {
+                        Id = reader.GetInt32("Book_ID"),
+                        Title = reader.GetString("Title"),
+                        Author_ID = reader.GetInt32("Author_ID"),
+                    });
+                }
+                return book;
+            }
+        }
         public Loaner GetLoanerById(int id)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))

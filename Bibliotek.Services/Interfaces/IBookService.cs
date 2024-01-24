@@ -19,5 +19,6 @@ namespace Bibliotek.Service.Interfaces
         string AddBookGenre(int bookID, int genreID);
         List<Genre> Genres(int id);
         List<Genre> GetGenres();
-    }
+		Books GetLoanedBooks(int id);
+	}
 }
