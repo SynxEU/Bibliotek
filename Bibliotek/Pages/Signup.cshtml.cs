@@ -17,24 +17,24 @@ namespace Bibliotek.Pages
             _loanerService = loanerService;
         }
 
-        [BindProperty]
+        [BindProperty, Required]
         public string FirstName { get; set; } = string.Empty;
 
-        [BindProperty]
+        [BindProperty, Required]
         public string LastName { get; set; } = string.Empty;
 
-        [BindProperty]
+        [BindProperty, Required]
         public string EmailAddress { get; set; } = string.Empty;
 
-        [BindProperty]
+        [BindProperty, Required]
         [MinLength(7)]
         public string PhoneNumber { get; set; } = string.Empty;
 
-        [BindProperty]
+        [BindProperty, Required]
         [MinLength(8)]
         public string Password { get; set; } = string.Empty;
 
-        [BindProperty]
+        [BindProperty, Required]
         [Compare(nameof(Password), ErrorMessage = "Make sure passwords are matching")]
         public string ConfirmPassword { get; set; } = string.Empty;
 
@@ -60,6 +60,7 @@ namespace Bibliotek.Pages
 
             else
             {
+                ModelState.AddModelError("SignUP", "Details don't look right");
                 return Page();
             }
 

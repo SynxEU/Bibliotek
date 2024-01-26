@@ -36,18 +36,16 @@ namespace Bibliotek.Pages.Admin.Create
         }
         public IActionResult OnPostCreate()
         {
-            if (!string.IsNullOrWhiteSpace(Name))
+            if (!string.IsNullOrWhiteSpace(Name) && DOB > DateTime.MinValue)
             {
-                if (DOB > DateTime.MinValue)
-                {
-                    _authorService.CreateAuthor(Name, DOB);
-                }
-                else
-                {
-                    return Page();
-                }
+                _authorService.CreateAuthor(Name, DOB);
+                return RedirectToPage("/Admin/Authors");
             }
-            return RedirectToPage("/Admin/Authors");
+            else
+            {
+                ModelState.AddModelError("Author", "Author details are wrong");
+                return Page();
+            }
         }
     }
 }

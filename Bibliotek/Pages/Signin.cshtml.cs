@@ -2,6 +2,7 @@ using Bibliotek.Domain.Models;
 using Bibliotek.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 
 namespace Bibliotek.Pages
 {
@@ -16,9 +17,9 @@ namespace Bibliotek.Pages
         public void OnGet()
         {
         }
-        [BindProperty]
+        [BindProperty, Required]
         public string Mail { get; set; } = string.Empty;
-        [BindProperty]
+        [BindProperty, Required]
         public string Password { get; set; } = string.Empty;
         public IActionResult OnPost()
         {
@@ -35,7 +36,8 @@ namespace Bibliotek.Pages
             }
             else
             {
-                return RedirectToPage("/Signup");
+                ModelState.AddModelError("asp", "Wrong password or email");
+                return Page();
             }
         }
     }

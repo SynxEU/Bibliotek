@@ -49,7 +49,7 @@ namespace Bibliotek.Pages.Admin.Edit
 
         [BindProperty]
         public string ConfirmPassword { get; set; } = string.Empty;
-        [BindProperty]
+        [BindProperty, Required]
         public string AdminPassword { get; set; } = string.Empty;
         [BindProperty]
         public bool IsChecked { get; set; }

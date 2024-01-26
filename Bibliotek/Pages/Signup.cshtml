@@ -18,9 +18,7 @@
                         class="form-control" 
                         id="firstNameInput"
                         placeholder="First name"
-                        asp-for="FirstName"
-                        required
-                    >
+                        asp-for="FirstName">
                     <label for="firstNameInput">First name</label>
                 </div>
                 <div class="form-floating mb-2">
@@ -28,9 +26,7 @@
                         class="form-control" 
                         id="lastNameInput" 
                         placeholder="Last name" 
-                        asp-for="LastName"
-                        required
-                    >
+                        asp-for="LastName">
                     <label for="lastNameInput">Last name</label>
                 </div>
                 <div class="form-floating mb-2">
@@ -38,9 +34,7 @@
                         class="form-control" 
                         id="emailAddressInput"  
                         placeholder="name@example.com" 
-                        asp-for="EmailAddress"
-                        required
-                    >
+                        asp-for="EmailAddress">
                     <label for="emailAddressInput">Email address</label>
                 </div>
                 <div class="form-floating mb-2">
@@ -48,9 +42,7 @@
                         class="form-control" 
                         id="telInput" 
                         placeholder="Number" 
-                        asp-for="PhoneNumber"
-                        required
-                    >
+                        asp-for="PhoneNumber">
                     <label for="telInput">Phone Number</label>
                 </div>
                 <div class="form-group">
@@ -59,9 +51,7 @@
                             class="form-control" 
                             id="passwordInput" 
                             placeholder="Password" 
-                            asp-for="Password"
-                            required
-                        >
+                            asp-for="Password">
                         <label for="passwordInput">Password</label>
                     </div>
                 </div>
@@ -71,13 +61,11 @@
                             class="form-control" 
                             id="confirmPasswordInput" 
                             placeholder="Confirm password"
-                            asp-for="ConfirmPassword"
-                            required
-                        >
+                            asp-for="ConfirmPassword">
                         <label for="confirmPasswordInput">Confirm password</label>
-                        <span asp-validation-for="ConfirmPassword"></span>
                     </div>
                 </div>
+                <div asp-validation-summary="All" class="text-danger"></div>
                 <button type="submit" class="btn btn-primary">
                     Sign up
                 </button>

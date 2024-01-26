@@ -25,13 +25,13 @@ namespace Bibliotek.Pages.Admin.Create
             }
 
         }
-        [BindProperty]
+        [BindProperty, Required]
         public string Title { get; set; } = string.Empty;
 
-        [BindProperty]
+        [BindProperty, Required]
         public int Author { get; set; }
 
-        [BindProperty]
+        [BindProperty, Required]
         public int Genre { get; set; }
 
         public IActionResult OnPostCancel()
@@ -40,11 +40,16 @@ namespace Bibliotek.Pages.Admin.Create
         }
         public IActionResult OnPostCreate()
         {
-            if (!string.IsNullOrWhiteSpace(Title))
+            if (!string.IsNullOrWhiteSpace(Title) && Author != 0 && Genre != 0)
             {
                 _bookService.CreateBook(Title, Author, Genre);
+                return RedirectToPage("/Admin/Books");
             }
-            return RedirectToPage("/Admin/Books");
+            else
+            {
+                ModelState.AddModelError("wrongtitle", "Book details was wrong");
+                return Page();
+            }
         }
     }
 }

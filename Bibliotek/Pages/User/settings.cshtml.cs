@@ -47,9 +47,11 @@ namespace Bibliotek.Pages.User
         [MinLength(8)]
         public string Password { get; set; } = string.Empty;
 
+
         [BindProperty]
         public string ConfirmPassword { get; set; } = string.Empty;
         [BindProperty]
+        [Required]
         public string CurrentPassword { get; set; } = string.Empty;
 
         public IActionResult OnPostCancel()

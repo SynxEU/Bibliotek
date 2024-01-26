@@ -46,15 +46,22 @@ namespace Bibliotek.Pages.Admin.Edit
 
             if (!string.IsNullOrWhiteSpace(Name))
             {
+                HttpContext.Session.Remove("TempAuthorID");
                 _authorService.EditAuthorName(id, Name);
+                return RedirectToPage("/Admin/Authors");
             }
             if (DOB > DateTime.MinValue)
             {
+                HttpContext.Session.Remove("TempAuthorID");
                 _authorService.EditAuthorDOB(id, DOB);
+                return RedirectToPage("/Admin/Authors");
             }
-
-            HttpContext.Session.Remove("TempAuthorID");
-            return RedirectToPage("/Admin/Authors");
+            else
+            {
+                HttpContext.Session.Remove("TempAuthorID");
+                ModelState.AddModelError("EditAuthor", "Some author details was not correct");
+                return Page();
+            }
         }
     }
 }
